@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Web Page</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script src="https://unpkg.com/snabbdom"></script>
+    <script src="packages/ui-library/ui-library/ui-library.js"></script>
+    <script>
+        const { h, patch } = window.Snabbdom;
+        const container = document.getElementById('app');
+
+        // Mount component and render into container
+        const exampleComponent = {
+            render() {
+                return template(currentState);
+            },
+            mount() {
+                console.log('Component mounted');
+            }
+        };
+
+        render(exampleComponent);
+
+        // Add event listener to the button
+        const addButton = document.createElement('button');
+        addButton.textContent = 'Add';
+        addButton.addEventListener('click', () => {
+            updateState({ count: currentState.count + 1 });
+            console.log('State changed:', currentState);
+        });
+        container.appendChild(addButton);
+    </script>
+</body>
+</html>
